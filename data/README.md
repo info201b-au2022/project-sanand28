@@ -3,11 +3,14 @@
 In our project, we use the following data files and Application Programming Interfaces:
 
 ## Data files (TODO: Update/delete for your PROJECT)
-|Data File Name | Brief Description|
-|---------------| -----------------|
-|[example.csv](./example.csv) | This file contains temperature data. (See report for details.)
-|[fires.csv](./fires.csv) | This file contains U.S. fire data from 1984-2021 from MTBS.
-|[another-file](./filename2.csv) | Description ...
+| Data File Name                 | Brief Description                                              |
+| ------------------------------ | -------------------------------------------------------------- |
+| [fires.csv](./fires.csv)       | This file contains U.S. fire data from 1984-2021 from MTBS.
+| [aqi_2017.csv](./aqi_2017.csv) | This file contains county-specific AQI data for 2017.
+| [aqi_2018.csv](./aqi_2018.csv) | This file contains county-specific AQI data for 2018.
+| [aqi_2019.csv](./aqi_2019.csv) | This file contains county-specific AQI data for 2019.
+| [aqi_2020.csv](./aqi_2020.csv) | This file contains county-specific AQI data for 2020.
+| [aqi_2021.csv](./aqi_2021.csv) | This file contains county-specific AQI data for 2021.
 
 ## Application Programming Interfaces (API) (TODO: Update/delete for your PROJECT)
 
