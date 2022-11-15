@@ -1,4 +1,4 @@
-# data_access.R must be ran first for helper functions if running individually.
+# data_access.R must be run first for helper functions if running individually.
 # source("data_access.R")
 
 library(plotly)

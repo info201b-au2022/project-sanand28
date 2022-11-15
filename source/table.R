@@ -1,37 +1,35 @@
+# data_access.R must be run first for helper functions if running individually.
+# source("data_access.R")
 
-library(ggplot2)
-library(tidyverse)
-# Read data (originally converted from .dbf (shapefile) to .csv using Excel)
-fires <- read.csv("https://raw.githubusercontent.com/info201b-au2022/project-sanand28/main/data/fires.csv")
+wildfires <- get_wildfires_df()
 
-# Extract all wildfires from 2017 to 2021 with their states
-wildfires <- fires %>%
-  mutate(Ig_Date = as.Date(Ig_Date, format = "%m/%d/%Y")) %>% # Convert to date
-  filter(format(Ig_Date, "%Y") >= 2017) %>% # Filter to 2017 and on
-  filter(Incid_Type == "Wildfire") %>% # Filter to only wildfires
-  relocate(BurnBndLon) %>% # Move lon to front
-  relocate(BurnBndLat, .after = BurnBndLon) %>% # Move lat to right after lon
-  arrange(Ig_Date) # Order by date, earliest to latest
-
-# Add Alaska and Hawaii to us_states.
-full_us <- rbind(spData::us_states,
-                 st_transform(spData::alaska, st_crs(spData::us_states)),
-                 st_transform(spData::hawaii,st_crs(spData::us_states)))
-
-# Get state from lat/lon
-wildfires$State <- lonlat_to_state(wildfires, states = full_us)
-wildfires$State_Abbr <- state.abb[match(wildfires$State, state.name)]
-
-# Drop NA states (wildfires in Puerto Rico, or those that started in
-# Mexico/Canada but spread into the US). There are 8 total of these.
-wildfires <- wildfires %>% drop_na(State)
-
-View(wildfires)
-
+# Get yearly total acres burned in every state
 acres_by_state <- wildfires %>%
   mutate(Year = format(Ig_Date, "%Y")) %>%
   group_by(State_Abbr, State, Year) %>%
-  summarise(Total_Burned = sum(BurnBndAc))
-View(acres_by_state)
+  summarise(Total_Burned = sum(BurnBndAc), .groups = "drop") %>%
+  pivot_wider(names_from = "Year", values_from = Total_Burned)
 
-#jjj
+# Add any states that didn't have any wildfires in all years
+for (state_name in state.name) {
+  if (!(state_name %in% acres_by_state$State)) {
+    new_state <- data.frame(
+      State_Abbr = state.abb[which(state.name == state_name)],
+      State = state_name,
+      stringsAsFactors = FALSE)
+    acres_by_state <- bind_rows(acres_by_state, new_state)
+  }
+}
+
+# Set NA to 0
+acres_by_state[is.na(acres_by_state)] <- 0
+
+# Create total in 5 years
+acres_by_state$Total_Burned <- acres_by_state[["2017"]] +
+  acres_by_state[["2018"]] +
+  acres_by_state[["2019"]] +
+  acres_by_state[["2020"]] +
+  acres_by_state[["2021"]]
+
+# Order by total acres burned, descending
+acres_by_state <- acres_by_state %>% arrange(desc(Total_Burned))
