@@ -3,8 +3,12 @@
 
 library(plotly)
 
-wildfires <- get_wildfires_df()
-aqi <- get_aqi_df()
+if (!exists("wildfires")) {
+  wildfires <- get_wildfires_df()
+}
+if (!exists("aqi")) {
+  aqi <- get_aqi_df()
+}
 
 # Get total acres burned in every state in 2021
 wildfires_2021 <- wildfires %>%
