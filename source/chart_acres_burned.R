@@ -1,4 +1,6 @@
-source("data_access.R")
+# data_access.R must be ran first for helper functions if running individually.
+# source("data_access.R")
+
 library(plotly)
 
 wildfires <- get_wildfires_df()
@@ -9,6 +11,17 @@ acres_by_state <- wildfires %>%
   group_by(State_Abbr, State, Year) %>%
   summarise(Total_Burned = sum(BurnBndAc), .groups = "drop") %>%
   pivot_wider(names_from = "Year", values_from = Total_Burned)
+
+# Add any states that didn't have any wildfires in all years
+for (state_name in state.name) {
+  if (!(state_name %in% acres_by_state$State)) {
+    new_state <- data.frame(
+      State_Abbr = state.abb[which(state.name == state_name)],
+      State = state_name,
+      stringsAsFactors = FALSE)
+    acres_by_state <- bind_rows(acres_by_state, new_state)
+  }
+}
 
 # Set NA to 0
 acres_by_state[is.na(acres_by_state)] <- 0
@@ -28,21 +41,21 @@ acres_by_state$hover <- with(acres_by_state, paste(State, "<br>",
                                                    "2021", acres_by_state[["2021"]], "<br>"))
 
 
-fig <- plot_geo(acres_by_state, locationmode = "USA-states")
+choropleth <- plot_geo(acres_by_state, locationmode = "USA-states")
 
-# Create choropleth of total acres burned from 2017-2021 
-fig <- fig %>% add_trace(
+# Create choropleth of total acres burned from 2017-2021
+choropleth <- choropleth %>% add_trace(
   z = ~Total_Burned, text = ~hover, locations = ~State_Abbr,
   color = ~Total_Burned, colors = "Reds"
 )
 
 # Create legend
-fig <- fig %>% colorbar(title = "Burnage (Acres)")
+choropleth <- choropleth %>% colorbar(title = "Burnage (Acres)")
 
 # Use Albers USA projection to easily see Alaska and Hawaii
-fig <- fig %>% layout(
+choropleth <- choropleth %>% layout(
   title = "2017-2021 Acres Burned by State<br>(Hover for breakdown)",
   geo = list(scope = "usa", projection = list(type = "albers usa"))
 )
 
-fig
+choropleth
