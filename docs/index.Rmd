@@ -1,54 +1,44 @@
 ---
-title: "Your Project Title"
-author: "project team members"
-date: "1/22/2022"
+title: "Air Quality and Wildfire Trends Over the Last 5 Years"
+author: "Alani Gayles (aig6@uw.edu), Shruti Anand (shrana3@uw.edu), An Dao (andao27@uw.edu), Brandon Mochizuki (bmoch@uw.edu)"
+date: "11/14/2022"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("../source/data_access.R")
+source("../source/chart_acres_burned.R")
+source("../source/chart_aqi_states.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## What is this file for?
+## Exploratory Data Analysis
 
-* This file will eventually become your project report for **P02: Exploratory Data Analysis**. Specifically, you will write rmarkdown to report your exploratory data analysis.
+### Chart 1: Choropleth
 
-* Please see Canvas for more details.
-
-## ACCESSING THE /source DIRECTORY
-### Example 1: Source some code and run a function
-```{r}
-# Example 1: Note relative path, which can be read: Up one
-# directory(..), down into source (/source), and 
-# then "source" an R file (data_access.R)
-source("../source/data_access.R")
-data_access_test()
+```{r echo=FALSE}
+choropleth
 ```
+In order to see which states have been hit hardest by wildfires, we decided to
+make a choropleth that maps each state with the total acres burned by wildfires
+from 2017 to 2021. This chart is color encoded by acres burned. White represents
+0 acres burned while dark red represents 8 million acres, which is fitting since
+red is associated with fire. States can be hovered for detailed information
+such as state name and the totals for every year. As shown, California has
+the most acres burned by far, and generally the west coast seems to be more
+prone to wildfire burnage, including Alaska.
 
-### Example 2: Initialize a variable and then use it
-```{r}
-# Example 1: This function was "sourced" above
-msg <- data_access_test(" Morgan!")
+### Chart 2: Scatter Plot
+```{r echo=FALSE}
+scatter
 ```
+In order to see if there is a relationship between wildfires and AQI, we decided
+to make a scatter plot that graphs total burned acres with average AQI in 2021 for
+all states. A scatterplot was used since trends between two variables can be
+spotted. If there is a correlation, there should be some sort of line that shows
+up. Since not all states had wildfires in 2021, only the ones that had are
+graphed. Hovering over a point shows the state and the specific numbers. As shown,
+while there are strong cases like California with the worst AQI and most acres
+burned, most of the remaining states are fairly inconclusive.
 
-> `r msg` Hope you have a good day!! 
-
-## ABOUT THIS FILE: 
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### Chart 3: Line
