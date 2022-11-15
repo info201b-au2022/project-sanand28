@@ -9,6 +9,7 @@ output: html_document
 source("../source/data_access.R")
 source("../source/chart_acres_burned.R")
 source("../source/chart_aqi_states.R")
+source("../source/chart_wa_aqi_2021.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -42,3 +43,8 @@ while there are strong cases like California with the worst AQI and most acres
 burned, most of the remaining states are fairly inconclusive.
 
 ### Chart 3: Line
+```{r echo=FALSE}
+chart
+```
+In order to see the AQI in Washington, we decided to make a line chart of the AQI
+2021...
