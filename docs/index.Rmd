@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("../source/chart_wa_aqi_2021.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
