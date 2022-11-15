@@ -33,3 +33,5 @@ acres_by_state <- wildfires %>%
   group_by(State_Abbr, State, Year) %>%
   summarise(Total_Burned = sum(BurnBndAc))
 View(acres_by_state)
+
+#jjj
