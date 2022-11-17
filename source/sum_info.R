@@ -15,7 +15,6 @@ if (!exists("aqi")) {
 
 sum_info <- list()
 
-
 # Info 1: number of wildfires
 sum_info$num_wildfires <- prettyNum(nrow(wildfires), big.mark = ",", scientific = FALSE)
 
@@ -30,26 +29,29 @@ sum_info$average_AQI <- aqi %>%
   mutate_if(is.numeric, round, digits = 2) %>%
   pull(average_aqi) # round to 2 decimal places
 
-
 # Info 4: states with the worst AQI every year from 2017 to 2021
-install.packages("sf")
-install.packages("spData")
-source("data_access.R")
-get_AQI_df
-
 sum_info$worst_AQI <- aqi %>%
+  mutate(Year = format(as.Date(Date), "%Y")) %>%
+  group_by(Year) %>%
   filter(AQI == max(AQI)) %>%
-  group_by(Year) %>%
-  pull(State.Name)
+  pull(State)
 
-    
-# Info 5: states with the best AQI every year from 2017 to 2021
-library("sf")
-library("spData")
-source("data_access.R")
-get_AQI_df
+# Info 5: Date Washington had its largest wildfire (in acres burned) in 2021
+sum_info$wa_largest_wildfire_2021 <- wildfires %>%
+  mutate(Ig_Date = as.Date(Ig_Date)) %>%
+  filter(
+    State == "Washington",
+    format(Ig_Date, "%Y") == 2021
+  ) %>%
+  filter(BurnBndAc == max(BurnBndAc)) %>%
+  pull(Ig_Date)
 
-sum_info$best_AQI <- aqi %>%
-  filter(AQI == min(AQI)) %>%
-  group_by(Year) %>%
-  pull(State.Name)
+# Info 6: Date Washington had the highest AQI in 2021
+sum_info$wa_max_aqi_2021 <- aqi %>%
+  mutate(Date = as.Date(Date)) %>%
+  filter(
+    State == "Washington",
+    format(Date, "%Y") == 2021
+  ) %>%
+  filter(Max_AQI == max(Max_AQI)) %>%
+  pull(Date)

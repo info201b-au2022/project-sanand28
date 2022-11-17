@@ -24,8 +24,14 @@ datasets of AQI from 2017 to 2021 from CBSA. The fires dataset contains
 information about `r sum_info$num_wildfires` wildfires from 2017 to 2021. The
 AQI dataset has `r sum_info$num_observations_aqi` AQI observations of
 states in the U.S. from 2017 to 2021. The average national AQIs for every year
-are `r sum_info$average_AQI`, ordered from 2017 to 2021. TODO Complete summary
-paragraph with two other variables from sum_info.R.
+are `r sum_info$average_AQI`, ordered from 2017 to 2021. The locations with the
+worst AQI every year were `r sum_info$worst_AQI`, ordered from 2017 to 2021. As
+a quick test to see if wildfires could be correlated with AQI, the highest AQI in
+Washington in 2021 was on `r sum_info$wa_max_aqi_2021`. The ignition day of the
+largest wildfire in Washington in 2021, on the other hand, was on
+`r sum_info$wa_largest_wildfire_2021`. It's unknown how long the wildfire lasted
+with this dataset, but a one month difference should mean that there is a
+possibility that that wildfire increased the maximum AQI in Washington.
 
 ### Table
 
