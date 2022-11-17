@@ -39,15 +39,17 @@ possibility that that wildfire increased the maximum AQI in Washington.
 knitr::kable(table, caption = "Total acres burned every year in states")
 ```
 
-For our table, we wanted to see how much acres were burned in every state.
-Each sorted by the total amount of acres burned. To do this, we had to get all the 
-wildfire data and the corresponding state within the timeline of 2017 to 2021. There 
-were a few "states" that had to be dropped because they weren't actually in the United 
-States. This table is included because we wanted to see if there was a correlation 
-between the wildfires and AQI in each state. This is because it will be easier to spot 
-any wildfire hot spots in the United States. It is shown that California had the most 
-wildfires and highest AQI. In correlation, states along the Pacific Ocean tend to also 
-have a higher amount of wildfires and levels of AQI. 
+For our table, we wanted to see how many acres were burned in every state, so it is
+sorted by the total amount of acres burned. To do this, we had to get all the 
+wildfire data and the corresponding state within the timeline of 2017 to 2021. This
+table is included because we wanted to see which states consistently have wildfires,
+and which states do not. States on the western half of the United States seemed to
+fit this condition, while states on the eastern half had sporadic wildfires if at
+all. This allows us to determine how we should be comparing AQI. For states with
+consistently high amount of wildfires, it'll be possible to compare AQI in fire
+seasons versus non fire seasons, as well as between years based on acres burned.
+For states with very few wildfires, it may be easier to just compare the AQI of
+years that did have wildfires with years that didn't.
 
 ### Chart 1: Choropleth
 
