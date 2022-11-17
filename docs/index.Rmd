@@ -33,7 +33,15 @@ paragraph with two other variables from sum_info.R.
 knitr::kable(table, caption = "Total acres burned every year in states")
 ```
 
-For our table, we wanted to see how much acres were burned in every state. Each sorted by the total amount of acres burned. To do this, we had to get all the wildfire data and the corresponding state within the timeline of 2017 to 2021. There were a few "states" that had to be dropped because they weren't actually in the United States. This table is included because we wanted to see if there was a correlation between the wildfires and AQI in each state. This is because it will be easier to spot any wildfire hot spots in the United States. It is shown that California had the most wildfires and highest AQI. In correlation, states along the Pacific Ocean tend to also have a higher amount of wildfires and levels of AQI. 
+For our table, we wanted to see how much acres were burned in every state.
+Each sorted by the total amount of acres burned. To do this, we had to get all the 
+wildfire data and the corresponding state within the timeline of 2017 to 2021. There 
+were a few "states" that had to be dropped because they weren't actually in the United 
+States. This table is included because we wanted to see if there was a correlation 
+between the wildfires and AQI in each state. This is because it will be easier to spot 
+any wildfire hot spots in the United States. It is shown that California had the most 
+wildfires and highest AQI. In correlation, states along the Pacific Ocean tend to also 
+have a higher amount of wildfires and levels of AQI. 
 
 TODO Add "why you included the table, and what information it reveals
 (California has most, states next to Pacific Ocean in general have more, etc).
