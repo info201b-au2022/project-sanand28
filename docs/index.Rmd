@@ -7,6 +7,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 source("../source/data_access.R")
+source("../source/sum_info.R")
+source("../source/table.R")
 source("../source/chart_acres_burned.R")
 source("../source/chart_aqi_states.R")
 source("../source/chart_wa_aqi_2021.R")
@@ -15,24 +17,53 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Exploratory Data Analysis
 
+### Dataset Summary
+
+The datasets used in this project are a dataset of fires from MTBS and
+datasets of AQI from 2017 to 2021 from CBSA. The fires dataset contains
+information about `r sum_info$num_wildfires` wildfires from 2017 to 2021. The
+AQI dataset has `r sum_info$num_observations_aqi` AQI observations of
+states in the U.S. from 2017 to 2021. The average national AQIs for every year
+are `r sum_info$average_AQI`, ordered from 2017 to 2021. TODO Complete summary
+paragraph with two other variables from sum_info.R.
+
+### Table
+
+```{r echo = FALSE, results = "asis"}
+knitr::kable(table, caption = "Total acres burned every year in states")
+```
+
+For our table, we wanted to see how much acres were burned in every state.
+Each sorted by the total amount of acres burned. To do this, we had to get all the 
+wildfire data and the corresponding state within the timeline of 2017 to 2021. There 
+were a few "states" that had to be dropped because they weren't actually in the United 
+States. This table is included because we wanted to see if there was a correlation 
+between the wildfires and AQI in each state. This is because it will be easier to spot 
+any wildfire hot spots in the United States. It is shown that California had the most 
+wildfires and highest AQI. In correlation, states along the Pacific Ocean tend to also 
+have a higher amount of wildfires and levels of AQI. 
+
 ### Chart 1: Choropleth
 
 ```{r echo=FALSE}
 choropleth
 ```
-In order to see which states have been hit hardest by wildfires, we decided to
-make a choropleth that maps each state with the total acres burned by wildfires
-from 2017 to 2021. This chart is color encoded by acres burned. White represents
-0 acres burned while dark red represents 8 million acres, which is fitting since
-red is associated with fire. States can be hovered for detailed information
-such as state name and the totals for every year. As shown, California has
-the most acres burned by far, and generally the west coast seems to be more
-prone to wildfire burnage, including Alaska.
+
+In order to see which states have had the most acres burned by wildfires, we
+decided to make a choropleth that maps each state with the total acres burned by
+wildfires from 2017 to 2021. This chart is color encoded by acres burned. White
+represents 0 acres burned while dark red represents 8 million acres, which is
+fitting since red is associated with fire. States can be hovered for detailed
+information such as state name and the totals for every year. As shown,
+California has the most acres burned by far, and generally the west coast seems
+to be more prone to wildfire burnage, including Alaska.
 
 ### Chart 2: Scatter Plot
+
 ```{r echo=FALSE}
 scatter
 ```
+
 In order to see if there is a relationship between wildfires and AQI, we decided
 to make a scatter plot that graphs total burned acres with average AQI in 2021 for
 all states. A scatterplot was used since trends between two variables can be
@@ -43,8 +74,16 @@ while there are strong cases like California with the worst AQI and most acres
 burned, most of the remaining states are fairly inconclusive.
 
 ### Chart 3: Line
+
 ```{r echo=FALSE}
 chart
 ```
-In order to see the AQI in Washington, we decided to make a line chart of the AQI
-2021...
+
+In order to see the AQI in Washington, we decided to make a line chart of the AQI each 
+day in 2021. The use of this chart helps us see the pattern of AQI throughout the
+year in Washingtonand we can see that there was a large spike around the time of 
+August and September when wildfireseason is the worst. Over the summer, there is drier 
+heat, less rain, and more factors that contibuteto high levels of air quality. However, 
+we can see that air quality remains consistent throughtout the rest of the year with 
+no significantly noticable spikes. 
+

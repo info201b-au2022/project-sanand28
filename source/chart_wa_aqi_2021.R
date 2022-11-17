@@ -6,7 +6,9 @@ library(ggplot2)
 library(tidyverse)
 library(dplyr)
 
-aqi <- get_aqi_df()
+if (!exists("aqi")) {
+  aqi <- get_aqi_df()
+}
 
 # create data
 wa <- aqi %>%

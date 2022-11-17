@@ -3,11 +3,13 @@
 
 library(plotly)
 
-wildfires <- get_wildfires_df()
+if (!exists("wildfires")) {
+  wildfires <- get_wildfires_df()
+}
 
 # Get yearly total acres burned in every state
 acres_by_state <- wildfires %>%
-  mutate(Year = format(Ig_Date, "%Y")) %>%
+  mutate(Year = format(as.Date(Ig_Date), "%Y")) %>%
   group_by(State_Abbr, State, Year) %>%
   summarise(Total_Burned = sum(BurnBndAc), .groups = "drop") %>%
   pivot_wider(names_from = "Year", values_from = Total_Burned)
