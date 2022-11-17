@@ -43,9 +43,6 @@ any wildfire hot spots in the United States. It is shown that California had the
 wildfires and highest AQI. In correlation, states along the Pacific Ocean tend to also 
 have a higher amount of wildfires and levels of AQI. 
 
-TODO Add "why you included the table, and what information it reveals
-(California has most, states next to Pacific Ocean in general have more, etc).
-
 ### Chart 1: Choropleth
 
 ```{r echo=FALSE}
@@ -82,6 +79,11 @@ burned, most of the remaining states are fairly inconclusive.
 chart
 ```
 
-In order to see the AQI in Washington, we decided to make a line chart of the AQI
-in 2021. TODO Fill out "why you included the chart and what information it reveals,
-including notable observations and insights from the chart."
+In order to see the AQI in Washington, we decided to make a line chart of the AQI each 
+day in 2021. The use of this chart helps us see the pattern of AQI throughout the
+year in Washingtonand we can see that there was a large spike around the time of 
+August and September when wildfireseason is the worst. Over the summer, there is drier 
+heat, less rain, and more factors that contibuteto high levels of air quality. However, 
+we can see that air quality remains consistent throughtout the rest of the year with 
+no significantly noticable spikes. 
+
