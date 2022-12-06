@@ -22,7 +22,17 @@ intro_page <- tabPanel(
 
 # sidebar panel
 chart1_sidebar_content <- sidebarPanel(
-  # TODO: add sidebar widgets
+  # year selection
+  sliderInput(
+    inputId = "chart1_year",
+    label = "Select Year",
+    min = 2017,
+    max = 2021,
+    value = 2021,
+    step = 1,
+    sep = "",
+    animate = animationOptions(interval = 2000)
+  )
 )
 
 # main page
