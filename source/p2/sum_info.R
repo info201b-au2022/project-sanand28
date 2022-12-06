@@ -1,7 +1,9 @@
 # Summary
-# A source file that takes in a dataset and returns a list of info about it:
-# data_access.R must be run first for helper functions if running individually.
-# source("data_access.R")
+# A source file that takes in a dataset and returns a list of info about it
+
+# data_access.R must be ran first for helper functions if running individually.
+# Or, set session's working directory to source file location and run the line below
+# source("../data_access.R")
 
 library(tidyverse)
 

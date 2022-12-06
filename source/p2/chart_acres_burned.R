@@ -1,5 +1,6 @@
 # data_access.R must be ran first for helper functions if running individually.
-# source("data_access.R")
+# Or, set session's working directory to source file location and run the line below
+# source("../data_access.R")
 
 library(plotly)
 

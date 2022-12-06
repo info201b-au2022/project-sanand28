@@ -7,11 +7,11 @@ output: html_document
 
 ```{r setup, include=FALSE}
 source("../source/data_access.R")
-source("../source/sum_info.R")
-source("../source/table.R")
-source("../source/chart_acres_burned.R")
-source("../source/chart_aqi_states.R")
-source("../source/chart_wa_aqi_2021.R")
+source("../source/p2/sum_info.R")
+source("../source/p2/table.R")
+source("../source/p2/chart_acres_burned.R")
+source("../source/p2/chart_aqi_states.R")
+source("../source/p2/chart_wa_aqi_2021.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -40,7 +40,7 @@ knitr::kable(table, caption = "Total acres burned every year in states")
 ```
 
 For our table, we wanted to see how many acres were burned in every state, so it is
-sorted by the total amount of acres burned. To do this, we had to get all the 
+sorted by the total amount of acres burned. To do this, we had to get all the
 wildfire data and the corresponding state within the timeline of 2017 to 2021. This
 table is included because we wanted to see which states consistently have wildfires,
 and which states do not. States on the western half of the United States seemed to
@@ -87,11 +87,11 @@ burned, most of the remaining states are fairly inconclusive.
 chart
 ```
 
-In order to see the AQI in Washington, we decided to make a line chart of the AQI each 
+In order to see the AQI in Washington, we decided to make a line chart of the AQI each
 day in 2021. The use of this chart helps us see the pattern of AQI throughout the
-year in Washingtonand we can see that there was a large spike around the time of 
-August and September when wildfireseason is the worst. Over the summer, there is drier 
-heat, less rain, and more factors that contibuteto high levels of air quality. However, 
-we can see that air quality remains consistent throughtout the rest of the year with 
-no significantly noticable spikes. 
+year in Washingtonand we can see that there was a large spike around the time of
+August and September when wildfireseason is the worst. Over the summer, there is drier
+heat, less rain, and more factors that contibuteto high levels of air quality. However,
+we can see that air quality remains consistent throughtout the rest of the year with
+no significantly noticable spikes.
 

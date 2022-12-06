@@ -1,5 +1,6 @@
-# data_access.R must be run first for helper functions if running individually.
-# source("data_access.R")
+# data_access.R must be ran first for helper functions if running individually.
+# Or, set session's working directory to source file location and run the line below
+# source("../data_access.R")
 
 # Libraries
 library(ggplot2)
