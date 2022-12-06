@@ -22,16 +22,26 @@ intro_page <- tabPanel(
 
 # sidebar panel
 chart1_sidebar_content <- sidebarPanel(
-  # year selection
-  sliderInput(
-    inputId = "chart1_year",
-    label = "Select Year",
-    min = 2017,
-    max = 2021,
-    value = 2021,
-    step = 1,
-    sep = "",
-    animate = animationOptions(interval = 2000)
+  # Make date picker show up above tabs
+  tags$style(HTML(".datepicker {z-index:99999 !important;}")),
+
+  # Data selection
+  selectInput(
+    inputId = "chart1_var",
+    label = "Variable",
+    choices = list(
+      "Wildfire Burnage",
+      "Wildfire Count",
+      "Average AQI"
+    )
+  ),
+  # Date range selection
+  dateRangeInput(
+    inputId = "chart1_date_range",
+    label = "Date Range",
+    start = "2017-01-01", end = "2021-12-31",
+    min   = "2017-01-01", max = "2021-12-31",
+    startview = "year", format = "mm/dd/yyyy"
   )
 )
 
