@@ -14,10 +14,6 @@ if (!exists("aqi")) {
 server <- function(input, output) {
   # Create chart 1
   output$chart1 <- renderPlotly({
-    # "Wildfire Burnage"
-    # "Wildfire Count"
-    #
-    #
     if (input$chart1_var != "Average AQI") {
       # Filter acres burned and wildfire count to the selected date range
       data <- wildfires %>%
@@ -27,7 +23,7 @@ server <- function(input, output) {
           ) %>%
         group_by(State, State_Abbr) %>%
         summarize(
-          Total_Burnage = sum(BurnBndAc, na.rm = T),
+          Total_Burned = sum(BurnBndAc, na.rm = T),
           Wildfire_Count = n(),
           .groups = "drop"
         )
@@ -49,8 +45,8 @@ server <- function(input, output) {
       if (input$chart1_var == "Wildfire Burnage") {
         chart <- chart %>%
           add_trace(
-            z = ~Total_Burnage, text = ~State, locations = ~State_Abbr,
-            color = ~Total_Burnage, colors = "Reds"
+            z = ~Total_Burned, text = ~State, locations = ~State_Abbr,
+            color = ~Total_Burned, colors = "Reds"
           ) %>%
         colorbar(title = "Burnage (Acres)") %>%
         layout( # Use Albers USA projection
@@ -84,15 +80,15 @@ server <- function(input, output) {
           ) %>%
         group_by(State) %>%
         summarize(
-          Average_AQI = mean(AQI, na.rm = T),
+          Avg_AQI = mean(AQI, na.rm = T),
           Max_AQI = max(Max_AQI, na.rm = T),
           Min_AQI = min(Min_AQI, na.rm = T)
         )
       data$State_Abbr <- state.abb[match(data$State, state.name)]
       # Create choropleth
       chart <- plot_geo(data, locationmode = "USA-states") %>%
-        add_trace(z = ~Average_AQI, text = ~State, locations = ~State_Abbr,
-          color = ~Average_AQI, colors = "Reds") %>%
+        add_trace(z = ~Avg_AQI, text = ~State, locations = ~State_Abbr,
+          color = ~Avg_AQI, colors = "Reds") %>%
       colorbar(title = "AQI") %>%
       layout( # Use Albers USA projection
         title = paste(
@@ -107,8 +103,48 @@ server <- function(input, output) {
 
   # Create chart 2
   output$chart2 <- renderPlotly({
-    # TODO: create and return chart 2
-    return(NA)
+
+    # Filter acres burned to the selected date range
+    wildfire_data <- wildfires %>%
+      filter(
+        input$chart2_date_range[1] <= Ig_Date,
+        Ig_Date <= input$chart2_date_range[2],
+        ) %>%
+      group_by(State) %>%
+      summarize(Total_Burned = sum(BurnBndAc, na.rm = T))
+
+    # Filter average aqi to the selected date range
+    aqi_data <- aqi %>%
+      filter(
+        input$chart1_date_range[1] <= Date,
+        Date <= input$chart1_date_range[2],
+        ) %>%
+      group_by(State) %>%
+      summarize(Avg_AQI = mean(AQI, na.rm = T))
+
+    # Join the datasets by state and filter to the selected states
+    data <- aqi_data %>%
+      left_join(wildfire_data, by = "State") %>%
+      filter(State %in% input$chart2_states)
+
+    # Create the scatter plot
+    chart <- plot_ly(
+      data = data,
+      type = "scatter",
+      mode = "markers",
+      x = ~Total_Burned,
+      y = ~Avg_AQI,
+      text = ~State
+    ) %>%
+      layout(
+        title = paste(
+          "Average AQI vs Acres Burned by Wildfires<br>from",
+          input$chart2_date_range[1], "to", input$chart2_date_range[2]
+        ),
+        xaxis = list(title = "Total Burned (Acres)"),
+        yaxis = list(title = "Average AQI")
+      )
+    return(chart)
   })
 
   # Create chart 3

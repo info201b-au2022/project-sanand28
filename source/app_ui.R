@@ -62,7 +62,25 @@ chart1_page <- tabPanel(
 
 # sidebar panel
 chart2_sidebar_content <- sidebarPanel(
-  # TODO: add sidebar widgets
+  # Make date picker show up above tabs
+  tags$style(HTML(".datepicker {z-index:99999 !important;}")),
+
+  # State selection
+  selectInput(
+    inputId = "chart2_states",
+    label = "Filter States",
+    choices = state.name,
+    selected = state.name,
+    multiple = TRUE
+  ),
+  # Date range selection
+  dateRangeInput(
+    inputId = "chart2_date_range",
+    label = "Date Range",
+    start = "2017-01-01", end = "2021-12-31",
+    min   = "2017-01-01", max = "2021-12-31",
+    startview = "year", format = "mm/dd/yyyy"
+  )
 )
 
 # main page
