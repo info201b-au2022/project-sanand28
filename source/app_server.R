@@ -150,7 +150,54 @@ server <- function(input, output) {
   # Create chart 3
   output$chart3 <- renderPlotly({
     # TODO: create and return chart 3
-    return(NA)
+    aqi_data <- aqi %>%
+      mutate(Date = as.Date(Date)) %>%
+      filter(input$chart3_year == format(Date, "%Y")) %>%
+      filter(State == input$chart3_state)
+
+    wildfire_data <- wildfires %>%
+      filter(input$chart3_year == format(Ig_Date, "%Y")) %>%
+      filter(State == input$chart3_state) %>%
+      group_by(Ig_Date) %>%
+      summarize(
+        Total_Burned = sum(BurnBndAc, na.rm = T),
+        Count = n()
+      )
+
+    chart <- plot_ly() %>%
+      add_trace(
+        x = wildfire_data$Ig_Date,
+        y = wildfire_data$Total_Burned,
+        name = "Acres Burned",
+        type = "bar"
+      )
+
+    chart <- chart %>% add_trace(
+        x = aqi_data$Date,
+        y = aqi_data$AQI,
+        name = "AQI",
+        mode = "lines+markers",
+        type = "scatter",
+        yaxis = "y2"
+      ) %>%
+      layout(
+        title = paste(
+          "AQI and Acres Burned by Wildfires in",
+          input$chart3_state, "in", input$chart3_year),
+        xaxis = list(title = "Date"),
+        yaxis = list(
+          title = "Total Burned by Wildfire (Acres)",
+          rangemode = "tozero"
+        ),
+        yaxis2 = list(
+          overlaying = "y",
+          side = "right",
+          title = "AQI",
+          tickfont = list(color = "red"),
+          rangemode = "tozero"
+        )
+      )
+    return(chart)
   })
 
   # TODO? Create any other variables/charts used in the app

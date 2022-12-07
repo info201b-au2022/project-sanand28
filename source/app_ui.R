@@ -100,7 +100,24 @@ chart2_page <- tabPanel(
 
 # sidebar panel
 chart3_sidebar_content <- sidebarPanel(
-  # TODO: add sidebar widgets
+  # State selection
+  selectInput(
+    inputId = "chart3_state",
+    label = "Select State",
+    choices = state.name,
+    selected = "Washington"
+  ),
+
+  # Year selection
+  sliderInput(
+    inputId = "chart3_year",
+    label = "Select Year",
+    min = 2017, max = 2021,
+    value = 2021,
+    step = 1,
+    sep = "",
+    animate = animationOptions(interval = 1000)
+  )
 )
 
 # main page
