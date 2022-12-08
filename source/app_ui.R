@@ -9,8 +9,8 @@ intro_page <- tabPanel(
   h1("Do Wildfires Significantly Affect Air Quality?"),
 
   h2("Overview"),
-  p("Over the last half decade, wildfires across America have increased drastically, increasing 
-the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires 
+  p("Over the last half decade, wildfires across America have increased drastically, increasing
+the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires
 happening around the country."),
 
   h2("Major Questions"),
@@ -21,11 +21,11 @@ happening around the country."),
 *What locstions tend to have sudden spikes in air quality?"),
 
   h2("Datasets"),
-  p("The datasets we used were multiple files spanning from the years 2017 to 2021. In each file, 
-they contain every day of the year which allows us to track and analyze the trends of air quality 
-and compare it to when there were fires. This data was taken from United States Environmental Protection 
-Agency's Air Quality System. We also use Fire Occurrence Dataset that provides us with data about the fires 
-spanning from the years 1984 to 2021. With this data, we can make conclusions about the connection wildfires 
+  p("The datasets we used were multiple files spanning from the years 2017 to 2021. In each file,
+they contain every day of the year which allows us to track and analyze the trends of air quality
+and compare it to when there were fires. This data was taken from United States Environmental Protection
+Agency's Air Quality System. We also use Fire Occurrence Dataset that provides us with data about the fires
+spanning from the years 1984 to 2021. With this data, we can make conclusions about the connection wildfires
 have with the quality of the air.")
 )
 
@@ -76,13 +76,21 @@ chart2_sidebar_content <- sidebarPanel(
   # Make date picker show up above tabs
   tags$style(HTML(".datepicker {z-index:99999 !important;}")),
 
+  # Make options group have two columns
+  tags$style(HTML("
+     .shiny-options-group {
+       -webkit-column-count: 2; /* Chrome, Safari, Opera */
+       -moz-column-count: 2; /* Firefox */
+       column-count: 2;
+     }
+  ")),
+
   # State selection
-  selectInput(
+  checkboxGroupInput(
     inputId = "chart2_states",
     label = "Filter States",
     choices = state.name,
-    selected = state.name,
-    multiple = TRUE
+    selected = state.name
   ),
   # Date range selection
   dateRangeInput(
