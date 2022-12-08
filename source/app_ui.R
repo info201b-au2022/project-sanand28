@@ -9,13 +9,24 @@ intro_page <- tabPanel(
   h1("Do Wildfires Significantly Affect Air Quality?"),
 
   h2("Overview"),
-  p("TODO: write overview"),
+  p("Over the last half decade, wildfires across America have increased drastically, increasing 
+the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires 
+happening around the country."),
 
   h2("Major Questions"),
-  p("TODO: write major questions to answer"),
+  p("Here's what we wanted to find out:
+*How does average air quality differ betweem states?
+*Is there a trend in the change of air quality in Washington and other states in recent years?
+*Is there a relationship between air quality and the acres burned from wildfires? If so, how are they related?
+*What locstions tend to have sudden spikes in air quality?"),
 
   h2("Datasets"),
-  p("TODO: talk about datasets")
+  p("The datasets we used were multiple files spanning from the years 2017 to 2021. In each file, 
+they contain every day of the year which allows us to track and analyze the trends of air quality 
+and compare it to when there were fires. This data was taken from United States Environmental Protection 
+Agency's Air Quality System. We also use Fire Occurrence Dataset that provides us with data about the fires 
+spanning from the years 1984 to 2021. With this data, we can make conclusions about the connection wildfires 
+have with the quality of the air.")
 )
 
 # Chart 1
