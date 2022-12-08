@@ -149,50 +149,34 @@ summary_page <- tabPanel(
   tags$div(class = "text-page",
     h1("Summary Takeaways"),
 
-<<<<<<< HEAD
-  h2("Takeaway 1: Air quality and wildfires don’t have a strong correlation"),
-  p("In order to see if there is a relationship between wildfires and AQI, we decided
+    h2("Takeaway 1: Air quality and wildfires don’t have a strong correlation"),
+    p("In order to see if there is a relationship between wildfires and AQI, we decided
 to make a scatter plot that graphs total burned acres with average AQI in 2021 for
 all states. A scatterplot was used since trends between two variables can be
 spotted. If there is a correlation, there should be some sort of line with a relatively steep slope that shows
 up. As shown, while there are strong cases like California with the worst AQI and most acres
 burned, most of the remaining states are fairly inconclusive."),
 
-  h2("Takeaway 2: AQI trend over time is similar among regions in the US."),
-  p("By changing the Date range for our Chart 1 to show a different Average AQI map for each year,
-   we can see from the color-encoded maps that most states show similar trend throughout the years.
-    Hovering over a point will show the state's name and AQI."),
+    h2("Takeaway 2: AQI trend over time is similar among regions in the US."),
+    p("By changing the Date range for our Chart 1 to show a different Average AQI map for each year,
+we can see from the color-encoded maps that most states show similar trend throughout the years.
+Hovering over a point will show the state's name and AQI."),
 
-  h2("Takeaway 3: Northwest states tend to have the most extreme sudden spikes in the country"),
-  p("By selecting different states for Chart 3, you can see that while the other states’ sudden spikes
-  usually never surpassed 200, the sudden spike in 2020 in the northwest states was more than 400 for Oregon,
-  300 for Washington and 200 for Idaho respectively."),
-=======
-    h2("Takeaway 1: _"),
-    p("TODO: write takeaway"),
-
-    h2("Takeaway 2: _"),
-    p("TODO: write takeaway"),
-
-    h2("Takeaway 3: _"),
-    p("TODO: write takeaway"),
+    h2("Takeaway 3: Northwest states tend to have the most extreme sudden spikes in the country"),
+    p("By selecting different states for Chart 3, you can see that while the other states’ sudden spikes
+usually never surpassed 200, the sudden spike in 2020 in the northwest states was more than 400 for Oregon,
+300 for Washington and 200 for Idaho respectively."),
   )
->>>>>>> efaa0a3f91db5a453c09e4b6a5fcd19c36258a9c
 )
 
 # Report page
 report_page <- tabPanel(
   titlePanel("Report"),
-<<<<<<< HEAD
-  includeMarkdown("../docs/p01-proposal.md")
-=======
   tags$div(class = "text-page",
-
-    # TODO: Just putting the proposal here, feel free to remove
-    # if you're doing it a different way
+    # Must be linked via url for it to work on shinyapps,
+    # since only the source folder is being deployed
     includeMarkdown("https://raw.githubusercontent.com/info201b-au2022/project-sanand28/main/docs/p01-proposal.md")
   )
->>>>>>> efaa0a3f91db5a453c09e4b6a5fcd19c36258a9c
 )
 
 # UI with all the tabs
