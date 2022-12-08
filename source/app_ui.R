@@ -2,6 +2,7 @@
 
 library(shiny)
 library(plotly)
+library(markdown)
 
 # Introduction panel
 intro_page <- tabPanel(
@@ -149,20 +150,29 @@ summary_page <- tabPanel(
   titlePanel("Summary"),
   h1("Summary Takeaways"),
 
-  h2("Takeaway 1: _"),
-  p("TODO: write takeaway"),
+  h2("Takeaway 1: Air quality and wildfires don’t have a strong correlation"),
+  p("In order to see if there is a relationship between wildfires and AQI, we decided
+to make a scatter plot that graphs total burned acres with average AQI in 2021 for
+all states. A scatterplot was used since trends between two variables can be
+spotted. If there is a correlation, there should be some sort of line with a relatively steep slope that shows
+up. As shown, while there are strong cases like California with the worst AQI and most acres
+burned, most of the remaining states are fairly inconclusive."),
 
-  h2("Takeaway 2: _"),
-  p("TODO: write takeaway"),
+  h2("Takeaway 2: AQI trend over time is similar among regions in the US."),
+  p("By changing the Date range for our Chart 1 to show a different Average AQI map for each year,
+   we can see from the color-encoded maps that most states show similar trend throughout the years.
+    Hovering over a point will show the state's name and AQI."),
 
-  h2("Takeaway 3: _"),
-  p("TODO: write takeaway"),
+  h2("Takeaway 3: Northwest states tend to have the most extreme sudden spikes in the country"),
+  p("By selecting different states for Chart 3, you can see that while the other states’ sudden spikes
+  usually never surpassed 200, the sudden spike in 2020 in the northwest states was more than 400 for Oregon,
+  300 for Washington and 200 for Idaho respectively."),
 )
 
 # Report page
 report_page <- tabPanel(
   titlePanel("Report"),
-  # TODO: add final report
+  includeMarkdown("../docs/p01-proposal.md")
 )
 
 # UI with all the tabs
