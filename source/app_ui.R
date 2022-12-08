@@ -15,16 +15,17 @@ intro_page <- tabPanel(
   the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires
   happening around the country."),
 
-           
-     img("", src = "https://cdn.theatlantic.com/media/img/photo/2022/07/photos-wildfires-rage-across-southw/a01_1241970129-1/original.jpg"),
-
+    img("", src = "https://cdn.theatlantic.com/media/img/photo/2022/07/photos-wildfires-rage-across-southw/a01_1241970129-1/original.jpg", width="100%"),
+    p("Image from", em("The Atlantic")),
 
     h2("Major Questions"),
-    p("Here's what we wanted to find out:
-  *How does average air quality differ betweem states?
-  *Is there a trend in the change of air quality in Washington and other states in recent years?
-  *Is there a relationship between air quality and the acres burned from wildfires? If so, how are they related?
-  *What locstions tend to have sudden spikes in air quality?"),
+    p("Here's what we wanted to find out:"),
+    tags$ul(
+      tags$li("How does average air quality differ betweem states?"),
+      tags$li("Is there a trend in the change of air quality in Washington and other states in recent years?"),
+      tags$li("Is there a relationship between air quality and the acres burned from wildfires? If so, how are they related?"),
+      tags$li("What locations tend to have sudden spikes in air quality?")
+    ),
 
     h2("Datasets"),
     p("The datasets we used were multiple files spanning from the years 2017 to 2021. In each file,
@@ -33,9 +34,9 @@ intro_page <- tabPanel(
   Agency's Air Quality System. We also use Fire Occurrence Dataset that provides us with data about the fires
   spanning from the years 1984 to 2021. With this data, we can make conclusions about the connection wildfires
   have with the quality of the air."),
-  
+
   h2("Key Findings"),
-  p("While anlayzing our datasets we understood the significance of wildfires in relation to air quality and how there is a correlation between AQI (Air Quality Index) and total acres burned.
+  p("While analyzing our datasets we understood the significance of wildfires in relation to air quality and how there is a correlation between AQI (Air Quality Index) and total acres burned.
     We were able to conclude in most cases that if a state has a lower AQI, they will most likely have less acres burned as compared to states with a higher AQI.")
   )
 )
@@ -44,9 +45,6 @@ intro_page <- tabPanel(
 
 # sidebar panel
 chart1_sidebar_content <- sidebarPanel(
-  # Make date picker show up above tabs
-  tags$style(HTML(".datepicker {z-index:99999 !important;}")),
-
   # Data selection
   selectInput(
     inputId = "chart1_var",
@@ -186,13 +184,11 @@ all states. A scatterplot was used since trends between two variables can be
 spotted. If there is a correlation, there should be some sort of line with a relatively steep slope that shows
 up. As shown, while there are strong cases like California with the worst AQI and most acres
 burned, most of the remaining states are fairly inconclusive."),
-   
 
     h2("Takeaway 2: AQI trend over time is similar among regions in the US."),
     p("By changing the Date range for our Chart 1 to show a different Average AQI map for each year,
 we can see from the color-encoded maps that most states show similar trend throughout the years.
 Hovering over a point will show the state's name and AQI."),
-    
 
     h2("Takeaway 3: Northwest states tend to have the most extreme sudden spikes in the country, while
      eastern states with high population density tend to have the highest number of sudden spikes"),
@@ -200,17 +196,12 @@ Hovering over a point will show the state's name and AQI."),
   usually never surpassed 200, the sudden spike in 2020 in the northwest states was more than 400 for Oregon,
   300 for Washington and 200 for Idaho respectively. As shown in the graphs below, there are also many
     more sudden spikes for Maryland compared to Washington"),
-  
+
    img("", src = "https://iili.io/HnutaSV.md.png"),
-   
+
    img("", src = "https://iili.io/HnAH0ru.md.png")
-           
-           
-           
-    
-    
-    )
   )
+)
 
 
 
