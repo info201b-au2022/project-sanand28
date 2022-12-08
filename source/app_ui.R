@@ -14,6 +14,8 @@ intro_page <- tabPanel(
     p("Over the last half decade, wildfires across America have increased drastically, increasing
   the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires
   happening around the country."),
+           
+     img("", src = "https://cdn.theatlantic.com/media/img/photo/2022/07/photos-wildfires-rage-across-southw/a01_1241970129-1/original.jpg")
 
     h2("Major Questions"),
     p("Here's what we wanted to find out:
