@@ -14,8 +14,8 @@ intro_page <- tabPanel(
     p("Over the last half decade, wildfires across America have increased drastically, increasing
   the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires
   happening around the country."),
-           
-     img("", src = "https://cdn.theatlantic.com/media/img/photo/2022/07/photos-wildfires-rage-across-southw/a01_1241970129-1/original.jpg")
+
+    img("", src = "https://cdn.theatlantic.com/media/img/photo/2022/07/photos-wildfires-rage-across-southw/a01_1241970129-1/original.jpg"),
 
     h2("Major Questions"),
     p("Here's what we wanted to find out:
@@ -63,7 +63,14 @@ chart1_sidebar_content <- sidebarPanel(
 
 # main page
 chart1_main_content <- mainPanel(
-  plotlyOutput("chart1") # Chart 1
+  plotlyOutput("chart1"), # Chart 1
+  p(
+    paste(
+      "This chart shows the wildfire and AQI trends for a specified time for",
+      "all U.S. states. Acres burned and the number of wildfires, when compared",
+      "with the chart of average AQI, can assist in finding trends in location."
+    )
+  )
 )
 
 chart1_page <- tabPanel(
@@ -97,7 +104,14 @@ chart2_sidebar_content <- sidebarPanel(
 
 # main page
 chart2_main_content <- mainPanel(
-  plotlyOutput("chart2") # Chart 2
+  plotlyOutput("chart2"), # Chart 2
+  p(
+    paste(
+      "This chart shows a scatterplot of acres burned by wildfire and average AQI",
+      "for a specified time for specified U.S. states. Plotting these variables",
+      "can help spot out trendlines and correlations."
+    )
+  )
 )
 
 chart2_page <- tabPanel(
@@ -134,7 +148,15 @@ chart3_sidebar_content <- sidebarPanel(
 
 # main page
 chart3_main_content <- mainPanel(
-  plotlyOutput("chart3") # Chart 3
+  plotlyOutput("chart3"), # Chart 3
+  p(
+    paste(
+      "This chart shows a line graph of the AQI for a specified state and year,",
+      "along with a bar graph underneath with the acres burned by wildfires",
+      "on those days. This makes it easier to check how wildfires can impact",
+      "AQI."
+    )
+  )
 )
 
 chart3_page <- tabPanel(
