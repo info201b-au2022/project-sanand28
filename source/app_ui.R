@@ -7,27 +7,29 @@ library(markdown)
 # Introduction panel
 intro_page <- tabPanel(
   titlePanel("Intro"),
-  h1("Do Wildfires Significantly Affect Air Quality?"),
+  tags$div(class = "text-page",
+    h1("Do Wildfires Significantly Affect Air Quality?"),
 
-  h2("Overview"),
-  p("Over the last half decade, wildfires across America have increased drastically, increasing 
-the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires 
-happening around the country."),
+    h2("Overview"),
+    p("Over the last half decade, wildfires across America have increased drastically, increasing
+  the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires
+  happening around the country."),
 
-  h2("Major Questions"),
-  p("Here's what we wanted to find out:
-*How does average air quality differ betweem states?
-*Is there a trend in the change of air quality in Washington and other states in recent years?
-*Is there a relationship between air quality and the acres burned from wildfires? If so, how are they related?
-*What locstions tend to have sudden spikes in air quality?"),
+    h2("Major Questions"),
+    p("Here's what we wanted to find out:
+  *How does average air quality differ betweem states?
+  *Is there a trend in the change of air quality in Washington and other states in recent years?
+  *Is there a relationship between air quality and the acres burned from wildfires? If so, how are they related?
+  *What locstions tend to have sudden spikes in air quality?"),
 
-  h2("Datasets"),
-  p("The datasets we used were multiple files spanning from the years 2017 to 2021. In each file, 
-they contain every day of the year which allows us to track and analyze the trends of air quality 
-and compare it to when there were fires. This data was taken from United States Environmental Protection 
-Agency's Air Quality System. We also use Fire Occurrence Dataset that provides us with data about the fires 
-spanning from the years 1984 to 2021. With this data, we can make conclusions about the connection wildfires 
-have with the quality of the air.")
+    h2("Datasets"),
+    p("The datasets we used were multiple files spanning from the years 2017 to 2021. In each file,
+  they contain every day of the year which allows us to track and analyze the trends of air quality
+  and compare it to when there were fires. This data was taken from United States Environmental Protection
+  Agency's Air Quality System. We also use Fire Occurrence Dataset that provides us with data about the fires
+  spanning from the years 1984 to 2021. With this data, we can make conclusions about the connection wildfires
+  have with the quality of the air.")
+  )
 )
 
 # Chart 1
@@ -74,16 +76,12 @@ chart1_page <- tabPanel(
 
 # sidebar panel
 chart2_sidebar_content <- sidebarPanel(
-  # Make date picker show up above tabs
-  tags$style(HTML(".datepicker {z-index:99999 !important;}")),
-
   # State selection
-  selectInput(
+  checkboxGroupInput(
     inputId = "chart2_states",
     label = "Filter States",
     choices = state.name,
-    selected = state.name,
-    multiple = TRUE
+    selected = state.name
   ),
   # Date range selection
   dateRangeInput(
@@ -148,8 +146,10 @@ chart3_page <- tabPanel(
 # Summary page
 summary_page <- tabPanel(
   titlePanel("Summary"),
-  h1("Summary Takeaways"),
+  tags$div(class = "text-page",
+    h1("Summary Takeaways"),
 
+<<<<<<< HEAD
   h2("Takeaway 1: Air quality and wildfires don’t have a strong correlation"),
   p("In order to see if there is a relationship between wildfires and AQI, we decided
 to make a scatter plot that graphs total burned acres with average AQI in 2021 for
@@ -167,17 +167,38 @@ burned, most of the remaining states are fairly inconclusive."),
   p("By selecting different states for Chart 3, you can see that while the other states’ sudden spikes
   usually never surpassed 200, the sudden spike in 2020 in the northwest states was more than 400 for Oregon,
   300 for Washington and 200 for Idaho respectively."),
+=======
+    h2("Takeaway 1: _"),
+    p("TODO: write takeaway"),
+
+    h2("Takeaway 2: _"),
+    p("TODO: write takeaway"),
+
+    h2("Takeaway 3: _"),
+    p("TODO: write takeaway"),
+  )
+>>>>>>> efaa0a3f91db5a453c09e4b6a5fcd19c36258a9c
 )
 
 # Report page
 report_page <- tabPanel(
   titlePanel("Report"),
+<<<<<<< HEAD
   includeMarkdown("../docs/p01-proposal.md")
+=======
+  tags$div(class = "text-page",
+
+    # TODO: Just putting the proposal here, feel free to remove
+    # if you're doing it a different way
+    includeMarkdown("https://raw.githubusercontent.com/info201b-au2022/project-sanand28/main/docs/p01-proposal.md")
+  )
+>>>>>>> efaa0a3f91db5a453c09e4b6a5fcd19c36258a9c
 )
 
 # UI with all the tabs
 ui <- navbarPage(
   title = "SABA AQI",
+  header = tags$head(includeCSS("styles.css")),
   intro_page,
   chart1_page,
   chart2_page,
