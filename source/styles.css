@@ -1,0 +1,16 @@
+/* Make date picker show up above tabs */
+.datepicker {
+  z-index:99999 !important;
+}
+
+/* Make options group have two columns */
+.shiny-options-group {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+}
+
+/* Add padding to text pages */
+div.text-page {
+  padding: 0px 20px;
+}

@@ -6,27 +6,29 @@ library(plotly)
 # Introduction panel
 intro_page <- tabPanel(
   titlePanel("Intro"),
-  h1("Do Wildfires Significantly Affect Air Quality?"),
+  tags$div(class = "text-page",
+    h1("Do Wildfires Significantly Affect Air Quality?"),
 
-  h2("Overview"),
-  p("Over the last half decade, wildfires across America have increased drastically, increasing
-the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires
-happening around the country."),
+    h2("Overview"),
+    p("Over the last half decade, wildfires across America have increased drastically, increasing
+  the AQI around. We want to find out if the increase in numbers has a correlation with the wild fires
+  happening around the country."),
 
-  h2("Major Questions"),
-  p("Here's what we wanted to find out:
-*How does average air quality differ betweem states?
-*Is there a trend in the change of air quality in Washington and other states in recent years?
-*Is there a relationship between air quality and the acres burned from wildfires? If so, how are they related?
-*What locstions tend to have sudden spikes in air quality?"),
+    h2("Major Questions"),
+    p("Here's what we wanted to find out:
+  *How does average air quality differ betweem states?
+  *Is there a trend in the change of air quality in Washington and other states in recent years?
+  *Is there a relationship between air quality and the acres burned from wildfires? If so, how are they related?
+  *What locstions tend to have sudden spikes in air quality?"),
 
-  h2("Datasets"),
-  p("The datasets we used were multiple files spanning from the years 2017 to 2021. In each file,
-they contain every day of the year which allows us to track and analyze the trends of air quality
-and compare it to when there were fires. This data was taken from United States Environmental Protection
-Agency's Air Quality System. We also use Fire Occurrence Dataset that provides us with data about the fires
-spanning from the years 1984 to 2021. With this data, we can make conclusions about the connection wildfires
-have with the quality of the air.")
+    h2("Datasets"),
+    p("The datasets we used were multiple files spanning from the years 2017 to 2021. In each file,
+  they contain every day of the year which allows us to track and analyze the trends of air quality
+  and compare it to when there were fires. This data was taken from United States Environmental Protection
+  Agency's Air Quality System. We also use Fire Occurrence Dataset that provides us with data about the fires
+  spanning from the years 1984 to 2021. With this data, we can make conclusions about the connection wildfires
+  have with the quality of the air.")
+  )
 )
 
 # Chart 1
@@ -73,18 +75,6 @@ chart1_page <- tabPanel(
 
 # sidebar panel
 chart2_sidebar_content <- sidebarPanel(
-  # Make date picker show up above tabs
-  tags$style(HTML(".datepicker {z-index:99999 !important;}")),
-
-  # Make options group have two columns
-  tags$style(HTML("
-     .shiny-options-group {
-       -webkit-column-count: 2; /* Chrome, Safari, Opera */
-       -moz-column-count: 2; /* Firefox */
-       column-count: 2;
-     }
-  ")),
-
   # State selection
   checkboxGroupInput(
     inputId = "chart2_states",
@@ -155,27 +145,35 @@ chart3_page <- tabPanel(
 # Summary page
 summary_page <- tabPanel(
   titlePanel("Summary"),
-  h1("Summary Takeaways"),
+  tags$div(class = "text-page",
+    h1("Summary Takeaways"),
 
-  h2("Takeaway 1: _"),
-  p("TODO: write takeaway"),
+    h2("Takeaway 1: _"),
+    p("TODO: write takeaway"),
 
-  h2("Takeaway 2: _"),
-  p("TODO: write takeaway"),
+    h2("Takeaway 2: _"),
+    p("TODO: write takeaway"),
 
-  h2("Takeaway 3: _"),
-  p("TODO: write takeaway"),
+    h2("Takeaway 3: _"),
+    p("TODO: write takeaway"),
+  )
 )
 
 # Report page
 report_page <- tabPanel(
   titlePanel("Report"),
-  # TODO: add final report
+  tags$div(class = "text-page",
+
+    # TODO: Just putting the proposal here, feel free to remove
+    # if you're doing it a different way
+    includeMarkdown("https://raw.githubusercontent.com/info201b-au2022/project-sanand28/main/docs/p01-proposal.md")
+  )
 )
 
 # UI with all the tabs
 ui <- navbarPage(
   title = "SABA AQI",
+  header = tags$head(includeCSS("styles.css")),
   intro_page,
   chart1_page,
   chart2_page,
